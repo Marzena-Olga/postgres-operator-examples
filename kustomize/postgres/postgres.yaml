@@ -5,7 +5,7 @@ metadata:
   annotations:
     postgres-operator.crunchydata.com/autoCreateUserSchema: "true"
 spec:
-  disableExporter: false
+  #disableExporter: false
   replicas: 2
   postgresVersion: 17
   users:
