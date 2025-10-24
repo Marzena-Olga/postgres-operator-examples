@@ -5,9 +5,8 @@ metadata:
   annotations:
     postgres-operator.crunchydata.com/autoCreateUserSchema: "true"
 spec:
-  componentSpecs:
-    - disableExporter: false
-      replicas: 2
+  disableExporter: false
+  replicas: 2
   postgresVersion: 17
   users:
     - name: pg-cluster
