@@ -1,7 +1,7 @@
 apiVersion: postgres-operator.crunchydata.com/v1beta1
 kind: PostgresCluster
 metadata:
-  name: hippo-ha
+  name: pg-cluster
 spec:
   postgresVersion: 17
   instances:
@@ -12,7 +12,7 @@ spec:
         - "ReadWriteOnce"
         resources:
           requests:
-            storage: 1Gi
+            storage: 10Gi
       affinity:
         podAntiAffinity:
           preferredDuringSchedulingIgnoredDuringExecution:
@@ -21,7 +21,7 @@ spec:
               topologyKey: kubernetes.io/hostname
               labelSelector:
                 matchLabels:
-                  postgres-operator.crunchydata.com/cluster: hippo-ha
+                  postgres-operator.crunchydata.com/cluster: pg-cluster
                   postgres-operator.crunchydata.com/instance-set: pgha1
   backups:
     pgbackrest:
@@ -33,7 +33,7 @@ spec:
             - "ReadWriteOnce"
             resources:
               requests:
-                storage: 1Gi
+                storage: 10Gi
   proxy:
     pgBouncer:
       replicas: 2
@@ -45,5 +45,5 @@ spec:
               topologyKey: kubernetes.io/hostname
               labelSelector:
                 matchLabels:
-                  postgres-operator.crunchydata.com/cluster: hippo-ha
+                  postgres-operator.crunchydata.com/cluster: pg-cluster
                   postgres-operator.crunchydata.com/role: pgbouncer

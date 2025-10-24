@@ -9,6 +9,7 @@ labels:
     vendor: crunchydata
 
 resources:
-- grafana
-- prometheus
-- alertmanager
+#- grafana
+#- prometheus
+#- alertmanager
+- operator

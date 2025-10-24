@@ -1,14 +1,14 @@
 apiVersion: postgres-operator.crunchydata.com/v1beta1
 kind: PGAdmin
 metadata:
-  name: rhino
+  name: marzena
 spec:
   users:
-    - username: rhino@example.com
+    - username: marzena.kupniewska@nam.cz
       role: Administrator
       passwordRef:
         name: pgadmin-password-secret
-        key: rhino-password
+        key: marzena-password
   dataVolumeClaimSpec:
     accessModes:
     - "ReadWriteOnce"

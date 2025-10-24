@@ -1,7 +1,7 @@
 apiVersion: postgres-operator.crunchydata.com/v1beta1
 kind: PostgresCluster
 metadata:
-  name: hippo-gcs
+  name: pg-cluster-gcs
 spec:
   postgresVersion: 17
   instances:
@@ -10,15 +10,15 @@ spec:
         - "ReadWriteOnce"
         resources:
           requests:
-            storage: 1Gi
+            storage: 10Gi
   backups:
     pgbackrest:
       configuration:
       - secret:
           name: pgo-gcs-creds
       global:
-        repo1-path: /pgbackrest/postgres-operator/hippo-gcs/repo1
+        repo1-path: /pgbackrest/postgres-operator/pg-cluster-gcs/repo1
       repos:
       - name: repo1
         gcs:
-          bucket: "<YOUR_GCS_BUCKET_NAME>"
+          bucket: pg-cluster-bucket

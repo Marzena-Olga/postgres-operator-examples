@@ -1,18 +1,18 @@
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: hippo-certmanager
+  name: pg-cluster-certmanager
 spec:
   # Secret names are always required.
-  secretName: hippo-tls
+  secretName: pg-cluster-tls
   duration: 2160h # 90d
   renewBefore: 360h # 15d
   subject:
     organizations:
-    - hippo-org
+    - pg-cluster-org
   # The use of the common name field has been deprecated since 2000 and is
   # discouraged from being used.
-  commonName: hippo-primary
+  commonName: pg-cluster-primary
   isCA: false
   privateKey:
     algorithm: ECDSA

@@ -1,15 +1,18 @@
 apiVersion: postgres-operator.crunchydata.com/v1beta1
 kind: PostgresCluster
 metadata:
-  name: hippo
+  name: pg-cluster
   annotations:
     postgres-operator.crunchydata.com/autoCreateUserSchema: "true"
 spec:
+  componentSpecs:
+    - disableExporter: false
+      replicas: 2
   postgresVersion: 17
   users:
-    - name: hippo
+    - name: pg-cluster
       databases:
-        - zoo
+        - testmk
   instances:
     - name: instance1
       dataVolumeClaimSpec:
@@ -17,7 +20,7 @@ spec:
         - "ReadWriteOnce"
         resources:
           requests:
-            storage: 1Gi
+            storage: 10Gi
   backups:
     pgbackrest:
       repos:
@@ -28,4 +31,4 @@ spec:
             - "ReadWriteOnce"
             resources:
               requests:
-                storage: 1Gi
+                storage: 10Gi

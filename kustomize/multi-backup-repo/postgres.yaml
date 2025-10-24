@@ -1,7 +1,7 @@
 apiVersion: postgres-operator.crunchydata.com/v1beta1
 kind: PostgresCluster
 metadata:
-  name: hippo-multi-repo
+  name: pg-cluster-multi-repo
 spec:
   postgresVersion: 17
   instances:
@@ -10,7 +10,7 @@ spec:
         - "ReadWriteOnce"
         resources:
           requests:
-            storage: 1Gi
+            storage: 10Gi
   backups:
     pgbackrest:
       configuration:
@@ -28,15 +28,15 @@ spec:
             - "ReadWriteOnce"
             resources:
               requests:
-                storage: 1Gi
+                storage: 10Gi
       - name: repo2
         s3:
-          bucket: "<YOUR_AWS_S3_BUCKET_NAME>"
-          endpoint: "<YOUR_AWS_S3_ENDPOINT>"
-          region: "<YOUR_AWS_S3_REGION>"
+          bucket: "pg-cluster-bucket"
+          endpoint: ""
+          region: ""
       - name: repo3
         gcs:
-          bucket: "<YOUR_GCS_BUCKET_NAME>"
+          bucket: "pg-cluster-bucket"
       - name: repo4
         azure:
-          container: "<YOUR_AZURE_CONTAINER>"
+          container: ""
